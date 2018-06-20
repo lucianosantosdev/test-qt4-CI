@@ -20,9 +20,7 @@ before_install:
     wget -c https://download.qt.io/official_releases/qt/4.8/4.8.7/qt-everywhere-opensource-src-4.8.7.tar.gz;
     tar -zxf qt-everywhere-opensource-src-4.8.7.tar.gz;
     cd qt-everywhere-opensource-src-4.8.7;
-    ./configure -confirm-license -opensource -release \
-    -openssl-linked -system-sqlite \
-    -no-dbus  -no-openvg -nomake demos -nomake examples -optimized-qmake;
+    ./configure -confirm-license -opensource -release -openssl-linked -system-sqlite -no-dbus  -no-openvg -nomake demos -nomake examples -optimized-qmake;
     make;
     sudo make install;
   fi
