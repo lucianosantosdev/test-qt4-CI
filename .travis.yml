@@ -1,7 +1,7 @@
 language: cpp
 sudo: require
 dist: trusty
-pos
+
 os:
  - linux
  - osx
