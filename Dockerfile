@@ -1,15 +1,20 @@
-FROM fedora:25
+FROM ubuntu:14.04
 
 WORKDIR /home/build
+
 #Setup
-RUN set -euxo pipefail; dnf -y update && dnf -y install \
+RUN apt-get update && apt-get install -y \
 git \
-qt5-qtbase \
-qt5-qtserialport-devel \
-qt5-qtserialport \ 
-qt5-qtcharts-devel \
-qt5-qtcharts \
-cmake extra-cmake-modules && \
-git clone https://github.com/KDE/atcore.git && \
-cmake atcore && make install
-CMD ./testclient/AtCoreTest
+build-essential \
+openssl \
+libssl-dev \ 
+libsqlite3-dev \
+qt4-default \
+libqtwebkit4
+
+# Build
+ARG CACHEBUST=1
+RUN git clone https://github.com/luckvargas/test-qt4-travis
+RUN cd test-qt4-travis && qmake test.pro && make && make install && ls
+
+CMD /opt/browser/bin/browser
