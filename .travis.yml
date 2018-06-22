@@ -39,9 +39,9 @@ script:
   fi
 after_success:
 - wget -c https://github.com/probonopd/uploadtool/raw/master/upload.sh;
-- # if [ "${TRAVIS_OS_NAME}" = "linux" ]; then 
+- if [ "${TRAVIS_OS_NAME}" = "linux" ]; then 
     find ./appdir -executable -type f -exec ldd {} \; | grep " => /usr" | cut -d " " -f 2-3 | sort | uniq; 
-    bash ./upload.sh ./AtCore*.AppImage*;
+    bash ./upload.sh ./Application-x86_64.AppImage;
   fi
 branches:
   except:
