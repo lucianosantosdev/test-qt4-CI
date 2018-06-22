@@ -36,7 +36,9 @@ install:
   fi
 - if [ "${TRAVIS_OS_NAME}" = "osx" ]; then
     brew update > /dev/null;
-    brew install qt4;
+    brew tap cartr/qt4
+    brew tap-pin cartr/qt4
+    brew install qt@4
     chmod -R 755 /usr/local/opt/qt4/*;
     export QTDIR="/usr/local/opt/qt4";
     export PATH="$QTDIR/bin:$PATH";
