@@ -26,10 +26,9 @@ script:
     wget -c "https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage";
     chmod a+x linuxdeployqt*.AppImage;
     unset QTDIR; unset QT_PLUGIN_PATH ; unset LD_LIBRARY_PATH;
-    ./linuxdeployqt*.AppImage deploy/$BIN -verbose=2 -bundle-non-qt-libs;
-    ./linuxdeployqt*.AppImage deploy/$BIN.desktop -verbose=2 -appimage;
+    ./linuxdeployqt*.AppImage deploy/$BIN -verbose=2 -bundle-non-qt-libs -appimage;
     export ARTIFACT="$BIN"-x86_64.AppImage;
-    mv Application-x86_64.AppImage $ARTIFACT
+    mv Application-x86_64.AppImage $ARTIFACT;
     find . | grep AppImage;
   fi
 after_success:
