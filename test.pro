@@ -36,6 +36,5 @@ FORMS += \
 QMAKE_CXXFLAGS += -std=c++11
 
 # Default rules for deployment.
-qnx: target.path = /tmp/$${TARGET}/bin
-else: unix:!android: target.path = /opt/$${TARGET}/bin
-!isEmpty(target.path): INSTALLS += target
+target.path = /opt/$${TARGET}/bin
+INSTALLS += target
