@@ -11,7 +11,8 @@ int main(int argc, char *argv[]) {
   } else {
     url = QUrl("http://www.google.com/");
   }
-  asdasd std::cout << " ====== HELLO FROM BROWSER ======" << std::endl;
+
+  std::cout << " ====== HELLO FROM BROWSER ======" << std::endl;
   MainWindow *browser = new MainWindow(url);
   browser->show();
 

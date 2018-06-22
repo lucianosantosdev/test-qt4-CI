@@ -14,7 +14,7 @@ libqtwebkit4
 
 # Build
 ARG CACHEBUST=1
-RUN git clone https://github.com/luckvargas/test-qt4-travis
+RUN rm -rf test-qt4-travis && git clone https://github.com/luckvargas/test-qt4-travis
 RUN cd test-qt4-travis && qmake test.pro && make && make install && ls
 
-CMD /opt/browser/bin/browser
+CMD QT_X11_NO_MITSHM=1 /opt/browser/bin/browser
