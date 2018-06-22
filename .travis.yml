@@ -31,7 +31,6 @@ script:
     source /opt/qt*/bin/qt*-env.sh; 
     qmake test.pro; 
     make;
-    sudo make install; 
     make DESTDIR=appdir/ install; find appdir/; 
     rm -rf appdir/usr/include appdir/usr/mkspecs appdir/usr/lib/x86_64-linux-gnu/; 
     wget -c "https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage"; 
