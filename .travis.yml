@@ -49,7 +49,7 @@ after_success:
     find ./appdir -executable -type f -exec ldd {} \; | grep " => /usr" | cut -d " " -f 2-3 | sort | uniq; 
     bash ./upload.sh ./AtCore*.AppImage*;
   fi
-- if [ "${TRAVIS_OS_NAME}" = "osx" ]; then bash ./upload.sh testclient/atcore-gui*.dmg*; fi 
+- # if [ "${TRAVIS_OS_NAME}" = "osx" ]; then bash ./upload.sh testclient/atcore-gui*.dmg*; fi 
  
 branches:
   except:
