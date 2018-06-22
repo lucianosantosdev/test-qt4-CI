@@ -4,15 +4,15 @@ dist: trusty
 
 os:
  - linux
- - osx
+# - osx
 matrix:
  exclude:
 # Don't build with clang on Linux
   - os: linux
     compiler: clang
 # Don't build with gcc on OSX
-  - os: osx
-    compiler: gcc
+#  - os: osx
+#    compiler: gcc
 
 before_install:
 - if [ "${TRAVIS_OS_NAME}" = "linux" ]; then
@@ -36,21 +36,12 @@ script:
     ./linuxdeployqt*.AppImage ./appdir/browser -appimage -bundle-non-qt-libs -no-translations
     rm appdir/default.desktop appdir/default.png
   fi
-- # if [ "${TRAVIS_OS_NAME}" = "osx" ]; then 
-    cmake -DBUILD_GUI=ON CMakeLists.txt; 
-    make;
-    mkdir testclient/atcore-gui.app/Contents/MacOS/plugins; 
-    mv src/plugins/*.dylib testclient/atcore-gui.app/Contents/MacOS/plugins/; 
-    macdeployqt testclient/atcore-gui.app/ -dmg; 
-  fi
 after_success:
 - wget -c https://github.com/probonopd/uploadtool/raw/master/upload.sh
 - # if [ "${TRAVIS_OS_NAME}" = "linux" ]; then 
     find ./appdir -executable -type f -exec ldd {} \; | grep " => /usr" | cut -d " " -f 2-3 | sort | uniq; 
     bash ./upload.sh ./AtCore*.AppImage*;
   fi
-- # if [ "${TRAVIS_OS_NAME}" = "osx" ]; then bash ./upload.sh testclient/atcore-gui*.dmg*; fi 
- 
 branches:
   except:
     - # Do not build tags that we create when we upload to GitHub Releases
