@@ -1,49 +1,33 @@
 language: cpp
 sudo: require
 dist: trusty
-
 os:
- - linux
-# - osx
+- linux
 matrix:
- exclude:
-# Don't build with clang on Linux
+  exclude:
   - os: linux
     compiler: clang
-# Don't build with gcc on OSX
-#  - os: osx
-#    compiler: gcc
-
 before_install:
-- if [ "${TRAVIS_OS_NAME}" = "linux" ]; then
-    sudo add-apt-repository ppa:beineri/opt-qt487-trusty -y;
-    sudo apt update -qq;
-    sudo apt install opt-qt4-dev-tools -y;
-  fi
-- if [ "${TRAVIS_OS_NAME}" = "osx" ]; then 
-    brew update > /dev/null; 
-    brew install qt4;
-    chmod -R 755 /usr/local/opt/qt4/*;
-    export QTDIR="/usr/local/opt/qt4";
-    export PATH="$QTDIR/bin:$PATH";
+- if [ "${TRAVIS_OS_NAME}" = "linux" ]; then sudo add-apt-repository ppa:beineri/opt-qt487-trusty
+  -y; sudo apt update -qq; sudo apt install opt-qt4-dev-tools -y; fi
+- if [ "${TRAVIS_OS_NAME}" = "osx" ]; then brew update > /dev/null; brew install qt4;
+  chmod -R 755 /usr/local/opt/qt4/*; export QTDIR="/usr/local/opt/qt4"; export PATH="$QTDIR/bin:$PATH";
   fi
 script:
-- if [ "${TRAVIS_OS_NAME}" = "linux" ]; then 
-    source /opt/qt*/bin/qt*-env.sh; 
-    qmake DESTDIR=appdir test.pro; 
-    make;
-    wget -c "https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage"; 
-    chmod a+x linuxdeployqt*.AppImage;
-    ./linuxdeployqt*.AppImage ./appdir/browser -appimage -bundle-non-qt-libs -no-translations;
-    rm appdir/default.desktop appdir/default.png;
+- if [ "${TRAVIS_OS_NAME}" = "linux" ]; then source /opt/qt*/bin/qt*-env.sh; qmake
+  DESTDIR=appdir test.pro; make; wget -c "https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage";
+  chmod a+x linuxdeployqt*.AppImage; ./linuxdeployqt*.AppImage ./appdir/browser -appimage
+  -bundle-non-qt-libs -no-translations; rm appdir/default.desktop appdir/default.png;
   fi
 after_success:
 - wget -c https://github.com/probonopd/uploadtool/raw/master/upload.sh;
-- if [ "${TRAVIS_OS_NAME}" = "linux" ]; then 
-    find ./appdir -executable -type f -exec ldd {} \; | grep " => /usr" | cut -d " " -f 2-3 | sort | uniq; 
-    bash ./upload.sh ./Application-x86_64.AppImage;
-  fi
+- if [ "${TRAVIS_OS_NAME}" = "linux" ]; then find ./appdir -executable -type f -exec
+  ldd {} \; | grep " => /usr" | cut -d " " -f 2-3 | sort | uniq; bash ./upload.sh
+  ./Application-x86_64.AppImage; fi
 branches:
   except:
-    - # Do not build tags that we create when we upload to GitHub Releases
-    - # /^(?i:continuous)$/
+  - 
+  - 
+env:
+  matrix:
+    secure: lI01MociZZ95eB34QH6X0Zmm4K3oMVySNUkmVi40VejBomToitDXZfzDFjD16D/+jYWmqxM3P0UKPIbRLA1Rqpjt1tkArlYMmSQ1Yi4ILYYmOooMOAN9m4e3SZhl+++rQmfOclnyRutUoe5ARL1WL42PKecq8ocShaeL5PIIuUR6eYtVMaW0/ug0MPW+tkItbWCAp/yHvE2maWNI1+UxkabAUg1Uzi8jbkcO3f5AAgnY3oYZtrh4niSv9wwgeGTwg1DZ3GvTPvb9828yaBHe8whUsBZxhFFjRzXmgoTNGO/pdLFk4NLLSTNvbzmryvKwLdYft+bKLdqGkB7Fhk9RlN/RPNELrJ8L2VgR/tsYz2C52Z1HzEj8gblopt+gHgBn8VGKwBPPdwwZ8gLV9v9pJERG0ac5gWmNC0aClaFr1G4St9uuYcPftNKwcnfh9lcoqLZDnz22q6Y4F/31CMoz5E67PwrDG/ftEI46TlXgwmqkd02JzzZTSgTszv3bBDXGv0F8QCy1twt3vWi/Zq0X2ZFkOaG9V3uCUoHMGSpdf98SIIW45r/J9zfV7A6A5QiVw5mesCeSi0lUCT3eEfqHq+nvZYfnwm9KuDwkeimQt9GfSaHJy6Mkf+vIs4L+ITH0JV9YPASdq0lLVa8tFvRcObWeKnHWPNWwtjaWJkDGHt4=
