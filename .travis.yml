@@ -16,8 +16,8 @@ matrix:
 
 before_install:
 - if [ "${TRAVIS_OS_NAME}" = "linux" ]; then
-    sudo add-apt-repository ppa:beineri/opt-qt487-trusty;
-    sudo apt update && sudo apt install opt-qt4-dev-tools;
+    sudo add-apt-repository ppa:beineri/opt-qt487-trusty -y;
+    sudo apt update && sudo apt install opt-qt4-dev-tools -y;
   fi
 - if [ "${TRAVIS_OS_NAME}" = "osx" ]; then 
     brew update > /dev/null; 
