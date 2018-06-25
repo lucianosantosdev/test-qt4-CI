@@ -37,7 +37,8 @@ install:
   # install Qt
   - curl -kLO https://download.qt.io/archive/qt/4.8/4.8.7/qt-everywhere-opensource-src-4.8.7.zip
   - 7z x qt-everywhere-opensource-src-4.8.7.zip > nul
-  - cd Qt
+  - dir
+  
   # - configure.exe -mp -prefix C:\Qt\4.8.7 -release -confirm-license -opensource -qt-zlib -qt-libjpeg -qt-libpng -qt-libmng qt-libtiff -no-qt3support -nomake demos -nomake examples -openssl -I C:\OpenSSL\include -L C:\OpenSSL\lib
   - configure.exe -mp -prefix C:\Qt\4.8.7 -release -confirm-license -opensource -qt-zlib -qt-libjpeg -qt-libpng -qt-libmng qt-libtiff -no-qt3support -nomake demos -nomake examples
   - nmake
