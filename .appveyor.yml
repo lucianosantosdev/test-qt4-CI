@@ -32,6 +32,10 @@ install:
   - choco install curl 7zip # dependencywalker
   - mkdir extern
   - cd extern
+  - dir C:\Program Files (x86)
+  - dir C:\Program Files (x86)\Microsoft Visual Studio\
+  - dir C:\Program Files
+  - dir C:\Program Files\Microsoft Visual Studio\
 
   # Build OpenSSL
   # - curl -kLO http://www.openssl.org/source/openssl-1.0.2d.tar.gz
