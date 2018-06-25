@@ -14,7 +14,7 @@ environment:
       PRO_MAKE: nmake release
       QMAKESPEC: win32-msvc2015
       QTMOVE: '%OUTDIR%\bin 4.8.7-msvc2015'
-      QTSUB: '4.8.7-msvc2015'
+      QTSUB: 'qt-4.8.7-x64-msvc2015'
       QTDOWNLOAD1: https://download.gforge.liris.cnrs.fr/meppbin/windows/vs2015/MEPP/packages/clean/qt-4.8.7-x64-msvc2015.7z
       QTARCHIVE1: 'qt-4.8.7-x64-msvc2015.7z'
       QTARCHIVE1_OPTS: '"-ir!?OUTDIR\*" "-xr!*doc\*" "-xr!*examples\*" "-xr!*demos\*"'
