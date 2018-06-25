@@ -29,12 +29,21 @@ install:
   - mkdir extern
   - cd extern
 
+  # Build OpenSSL
+  # - curl -kLO http://www.openssl.org/source/openssl-1.0.2d.tar.gz
+  # - 7z x openssl-1.0.2d.tar.gz
+  # - cd openssl-1.0.2d
+  # - perl Configure VC-WIN32 no-asm --prefix=C:\OpenSSL
   # install Qt
-  - curl -kLO https://download.gforge.liris.cnrs.fr/meppbin/windows/vs2015/MEPP/packages/clean/qt-4.8.7-x64-msvc2015.7z
-  - 7z x qt-4.8.7-x64-msvc2015.7z > nul
+  - curl -kLO https://download.qt.io/archive/qt/4.8/4.8.7/qt-everywhere-opensource-src-4.8.7.zip
+  - 7z x qt-everywhere-opensource-src-4.8.7.zip > nul
   - cd Qt
+  # - configure.exe -mp -prefix C:\Qt\4.8.7 -release -confirm-license -opensource -qt-zlib -qt-libjpeg -qt-libpng -qt-libmng qt-libtiff -no-qt3support -nomake demos -nomake examples -openssl -I C:\OpenSSL\include -L C:\OpenSSL\lib
+  - configure.exe -mp -prefix C:\Qt\4.8.7 -release -confirm-license -opensource -qt-zlib -qt-libjpeg -qt-libpng -qt-libmng qt-libtiff -no-qt3support -nomake demos -nomake examples
+  - nmake
+  - nmake install
+  - cd C:\Qt\4.8.7
   - dir
-  - cd qt-4.8.7-x64-msvc2015
  
   # finish install
   - set "QTDIR=%cd%"
