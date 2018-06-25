@@ -13,6 +13,7 @@ environment:
       COMPILERBAT: '"C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\vcvarsall.bat" x86'
       PRO_MAKE: nmake release
       QMAKESPEC: win32-msvc2010
+      QTMOVE: '$OUTDIR\bin 4.8.7-msvc2010'
       QTSUB: '4.8.7-msvc2010'
       QTDOWNLOAD1: https://download.qt.io/archive/qt/4.8/4.8.7/qt-opensource-windows-x86-vs2010-4.8.7.exe
       QTARCHIVE1: 'qt-opensource-windows-x86-vs2010-4.8.7.exe'
@@ -37,11 +38,13 @@ install:
   - if defined QTDOWNLOAD1 curl -kLO %QTDOWNLOAD1%
   - if defined QTARCHIVE1 7z x %QTARCHIVE1_OPTS% %QTARCHIVE1% >nul
   - if defined QTSUB set "QTDIR=%CD%\%QTSUB%"
+  - if defined QTMOVE move %QTMOVE%
   - echo %QTARCHIVE1%
   - echo %QTARCHIVE1_OPTS% 
   - echo %CD%
   - echo %QTDOWNLOAD1%
   - echo %QTDIR%
+  - dir %QTDIR%
   - if defined QTDOWNLOAD1 (echo [Paths] && echo Prefix=..) >%QTDIR%\bin\qt.conf
   - set QT_PLUGIN_PATH=%QTDIR%\plugins
   - cd ..
