@@ -41,16 +41,15 @@ install:
   - set "PATH=%QTDIR%\bin;%PATH%"
 
   # # Set some vars
-  # - qmake -v
+  - qmake -v
   # - set PRJLIBDIR=%WINDIR%\SysWOW64 # Find vclibs
-  # - set QTDIR
-  # - if %QTDIR:_64=%==%QTDIR% ( set ARCH=x86 ) else set ARCH=x64
-  # - if %QTDIR:msvc=%==%QTDIR% g++ --version
-  # - if %QTDIR:msvc=%==%QTDIR% set make=mingw32-make.exe
-  # - if %QTDIR:msvc=%==%QTDIR% %make% --version
-  # - if not %QTDIR:msvc=%==%QTDIR% call "%ProgramFiles(x86)%\Microsoft Visual Studio %VSVER%\VC\vcvarsall.bat" %ARCH%
-  # - if not %QTDIR:msvc=%==%QTDIR% set make=nmake.exe
-  # - if not %QTDIR:msvc=%==%QTDIR% %make% /? > nul
+  - if %QTDIR:_64=%==%QTDIR% ( set ARCH=x86 ) else set ARCH=x64
+  - if %QTDIR:msvc=%==%QTDIR% g++ --version
+  - if %QTDIR:msvc=%==%QTDIR% set make=mingw32-make.exe
+  - if %QTDIR:msvc=%==%QTDIR% %make% --version
+  - if not %QTDIR:msvc=%==%QTDIR% call "%ProgramFiles(x86)%\Microsoft Visual Studio %VSVER%\VC\vcvarsall.bat" %ARCH%
+  - if not %QTDIR:msvc=%==%QTDIR% set make=nmake.exe
+  - if not %QTDIR:msvc=%==%QTDIR% %make% /? > nul
   
 before_build:
   # Prepare the out-of-source build directory.
