@@ -8,17 +8,20 @@ init:
 environment:
   VSVER: 14.0
   matrix:
-    - BUILD: Qt4.8.7-x86-msvc2010
+    - BUILD: Qt4.8.7-x86-msvc2015
       QMAKE_OPTIONS: "CONFIG+=NO_QSM_POSTGRES"
       COMPILERBAT: '"C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\vcvarsall.bat" x86'
       PRO_MAKE: nmake release
-      QMAKESPEC: win32-msvc2010
-      QTMOVE: '%OUTDIR%\bin 4.8.7-msvc2010'
-      QTSUB: '4.8.7-msvc2010'
-      QTDOWNLOAD1: https://download.qt.io/archive/qt/4.8/4.8.7/qt-opensource-windows-x86-vs2010-4.8.7.exe
-      QTARCHIVE1: 'qt-opensource-windows-x86-vs2010-4.8.7.exe'
+      QMAKESPEC: win32-msvc2015
+      QTMOVE: '%OUTDIR%\bin 4.8.7-msvc2015'
+      QTSUB: '4.8.7-msvc2015'
+      QTDOWNLOAD1: https://download.gforge.liris.cnrs.fr/meppbin/windows/vs2015/MEPP/packages/clean/qt-4.8.7-x64-msvc2015.7z
+      QTARCHIVE1: 'qt-4.8.7-x64-msvc2015.7z'
       QTARCHIVE1_OPTS: '"-ir!?OUTDIR\*" "-xr!*doc\*" "-xr!*examples\*" "-xr!*demos\*"'
 
+# Qt4
+  - IF %CACHE%==FALSE curl -k --connect-timeout 60 --max-time 1200 -s -O 
+  - IF %CACHE%==FALSE 7z x qt-4.8.7-x64-msvc2015.7z > nul
 configuration:
   - release
   # -debug
@@ -50,6 +53,7 @@ install:
   - if defined QTDOWNLOAD1 (echo [Paths] && echo Prefix=..) >%QTDIR%\bin\qt.conf
   - set QT_PLUGIN_PATH=%QTDIR%\plugins
   - cd ..
+
 
   # finish install
   - cd ..
