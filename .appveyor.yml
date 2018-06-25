@@ -40,7 +40,7 @@ install:
   - dir
   - cd qt-everywhere-opensource-src-4.8.7
   # - configure.exe -mp -prefix C:\Qt\4.8.7 -release -confirm-license -opensource -qt-zlib -qt-libjpeg -qt-libpng -qt-libmng qt-libtiff -no-qt3support -nomake demos -nomake examples -openssl -I C:\OpenSSL\include -L C:\OpenSSL\lib
-  - configure.exe -mp -prefix C:\Qt\4.8.7 -release -confirm-license -opensource -qt-zlib -qt-libjpeg -qt-libpng -qt-libmng qt-libtiff -no-qt3support -nomake demos -nomake examples -platform win32-msvc2015
+  - configure.exe -mp -prefix C:\Qt\4.8.7 -release -confirm-license -opensource -qt-zlib -qt-libjpeg -qt-libpng -qt-libmng -qt-libtiff -no-qt3support -nomake demos -nomake examples -platform win32-msvc2015
   - nmake
   - nmake install
   - cd C:\Qt\4.8.7
