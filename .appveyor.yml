@@ -32,8 +32,6 @@ install:
   - choco install curl 7zip # dependencywalker
   - mkdir extern
   - cd extern
-  - dir C:\Program Files (x86)
-  - dir C:\Program Files (x86)\Microsoft Visual Studio\
   - dir C:\Program Files
   - dir C:\Program Files\Microsoft Visual Studio\
 
