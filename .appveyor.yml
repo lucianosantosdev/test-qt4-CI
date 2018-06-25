@@ -18,10 +18,7 @@ environment:
       QTDOWNLOAD1: https://download.gforge.liris.cnrs.fr/meppbin/windows/vs2015/MEPP/packages/clean/qt-4.8.7-x64-msvc2015.7z
       QTARCHIVE1: 'qt-4.8.7-x64-msvc2015.7z'
       QTARCHIVE1_OPTS: '"-ir!?OUTDIR\*" "-xr!*doc\*" "-xr!*examples\*" "-xr!*demos\*"'
-
-# Qt4
-  - IF %CACHE%==FALSE curl -k --connect-timeout 60 --max-time 1200 -s -O 
-  - IF %CACHE%==FALSE 7z x qt-4.8.7-x64-msvc2015.7z > nul
+      
 configuration:
   - release
   # -debug
