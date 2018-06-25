@@ -30,12 +30,9 @@ install:
   - cd extern
 
   # install Qt
-  - mkdir Qt
-  - cd Qt
   - curl -kLO https://download.gforge.liris.cnrs.fr/meppbin/windows/vs2015/MEPP/packages/clean/qt-4.8.7-x64-msvc2015.7z
   - 7z x qt-4.8.7-x64-msvc2015.7z > nul
-  - dir
-  - cd qt-4.8.7-x64-msvc2015
+  - cd Qt
   - dir
   
   # finish install
