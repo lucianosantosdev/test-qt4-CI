@@ -38,6 +38,8 @@ install:
   - if defined QTDOWNLOAD1 curl -kLO %QTDOWNLOAD1%
   - if defined QTARCHIVE1 7z x %QTARCHIVE1_OPTS% %QTARCHIVE1% >nul
   - if defined QTSUB set "QTDIR=%CD%\%QTSUB%"
+  - echo $OUTDIR
+  - echo %OUTDIR%
   - if defined QTMOVE move %QTMOVE%
   - echo %QTARCHIVE1%
   - echo %QTARCHIVE1_OPTS% 
