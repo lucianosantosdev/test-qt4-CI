@@ -1,0 +1,101 @@
+version: '{branch}-{build}'
+
+init:
+  # Create our AppVeyor version
+  - ps: $env:commit = $env:appveyor_repo_commit.SubString(0,7)
+  - ps: Update-AppveyorBuild -Version ("{0}-{1}-{2}" -f $env:appveyor_repo_branch,$env:appveyor_build_number,$env:commit )
+
+environment:
+  VSVER: 14.0
+  matrix:
+    - BUILD: Qt4.8.7-x86-msvc2010
+      QMAKE_OPTIONS: "CONFIG+=NO_QSM_POSTGRES"
+      COMPILERBAT: '"C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\vcvarsall.bat" x86'
+      PRO_MAKE: nmake release
+      PRO_CHECK: 'cd ..\..\bin && dir && tst_SqliteTest.exe'
+      QMAKESPEC: win32-msvc2010
+      QTMOVE: '$OUTDIR\bin 4.8.7-msvc2010'
+      QTSUB: '4.8.7-msvc2010'
+      QTDOWNLOAD1: https://download.qt.io/archive/qt/4.8/4.8.7/qt-opensource-windows-x86-vs2010-4.8.7.exe
+      QTARCHIVE1: 'qt-opensource-windows-x86-vs2010-4.8.7.exe'
+      QTARCHIVE1_OPTS: '"-ir!?OUTDIR\*" "-xr!*doc\*" "-xr!*examples\*" "-xr!*demos\*"'
+
+configuration:
+  - release
+  # -debug
+
+install:
+  # fix git\bin bug for mingw build
+  - set "PATH=%PATH:Git\bin;=Git\cmd;%"
+
+  # prepare extern install
+  - choco install curl 7zip # dependencywalker
+  - mkdir extern
+  - cd extern
+
+  # install Qt
+  - mkdir Qt
+  - cd Qt
+  - if defined QTDOWNLOAD1 curl -kLO %QTDOWNLOAD1%
+  - if defined QTARCHIVE1 7z x %QTARCHIVE1_OPTS% %QTARCHIVE1% >nul
+  - if defined QTMOVE move %QTMOVE%
+  - if defined QTSUB set "QTDIR=%CD%\%QTSUB%"
+  - if defined QTDOWNLOAD1 (echo [Paths]&& echo Prefix=..) >%QTDIR%\bin\qt.conf
+  - set QT_PLUGIN_PATH=%QTDIR%\plugins
+  - cd ..
+
+  # finish install
+  - cd ..
+  - set "PATH=%QTDIR%\bin;%PATH%"
+  - if defined COMPILERDIR set "PATH=%COMPILERDIR%;%PATH%"
+  - '%COMPILERBAT%'
+
+  # Set some vars
+  - '%QTDIR%\bin\qtenv2.bat'
+  - qmake -v
+  - set PRJLIBDIR=%WINDIR%\SysWOW64 # Find vclibs
+  - set QTDIR
+  - if %QTDIR:_64=%==%QTDIR% ( set ARCH=x86 ) else set ARCH=x64
+  - if %QTDIR:msvc=%==%QTDIR% g++ --version
+  - if %QTDIR:msvc=%==%QTDIR% set make=mingw32-make.exe
+  - if %QTDIR:msvc=%==%QTDIR% %make% --version
+  - if not %QTDIR:msvc=%==%QTDIR% call "%ProgramFiles(x86)%\Microsoft Visual Studio %VSVER%\VC\vcvarsall.bat" %ARCH%
+  - if not %QTDIR:msvc=%==%QTDIR% set make=nmake.exe
+  - if not %QTDIR:msvc=%==%QTDIR% %make% /? > nul
+  - set BIN=mini-qml
+
+before_build:
+  # Prepare the out-of-source build directory.
+  - cd %APPVEYOR_BUILD_FOLDER%
+  - mkdir %APPVEYOR_BUILD_FOLDER%-build
+  
+
+build_script:
+  # Compile it and check for .exe
+  - cd %APPVEYOR_BUILD_FOLDER%-build
+  - qmake -r %APPVEYOR_BUILD_FOLDER%
+  - '%make%'
+  - dir /b /s *.exe
+
+after_build:
+  # Add a link to the build output within the source directory. This is needed because AppVeyor does
+  # not support extracting artifacts from out-of-source build directories. See 'artifacts' below.
+  - dir /b /s *.exe
+  - mkdir deploy
+  - copy %APPVEYOR_BUILD_FOLDER%-build\%CONFIGURATION%\%BIN%.exe deploy\%BIN%.exe
+  - windeployqt --%CONFIGURATION% deploy/%BIN%.exe --verbose=2
+  - for %%I in (%PRJLIBS%) do copy %PRJLIBDIR%\%%I deploy\
+  - 7z a -tzip %BIN%_%CONFIGURATION%.zip deploy -r
+  - copy %APPVEYOR_BUILD_FOLDER%-build\%BIN%_%CONFIGURATION%.zip %APPVEYOR_BUILD_FOLDER%\%BIN%_%CONFIGURATION%.zip
+  - dir /b /s *.zip
+
+artifacts:
+  - path: '%BIN%_%CONFIGURATION%.zip'
+    name: '%BIN%'
+
+deploy:
+  - provider: GitHub
+    release: continuous
+    artifact: '%BIN%'
+    draft: false
+    prerelease: true
