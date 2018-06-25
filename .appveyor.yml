@@ -41,7 +41,6 @@ install:
   - set "PATH=%QTDIR%\bin;%PATH%"
 
   # # Set some vars
-  - '%QTDIR%\bin\qtenv2.bat'
   # - qmake -v
   # - set PRJLIBDIR=%WINDIR%\SysWOW64 # Find vclibs
   # - set QTDIR
@@ -52,14 +51,12 @@ install:
   # - if not %QTDIR:msvc=%==%QTDIR% call "%ProgramFiles(x86)%\Microsoft Visual Studio %VSVER%\VC\vcvarsall.bat" %ARCH%
   # - if not %QTDIR:msvc=%==%QTDIR% set make=nmake.exe
   # - if not %QTDIR:msvc=%==%QTDIR% %make% /? > nul
-  - set BIN=browser
-
+  
 before_build:
   # Prepare the out-of-source build directory.
   - cd %APPVEYOR_BUILD_FOLDER%
   - mkdir %APPVEYOR_BUILD_FOLDER%-build
   
-
 build_script:
   # Compile it and check for .exe
   - cd %APPVEYOR_BUILD_FOLDER%-build
@@ -68,6 +65,7 @@ build_script:
   - dir /b /s *.exe
 
 after_build:
+  - set BIN=browser
   # Add a link to the build output within the source directory. This is needed because AppVeyor does
   # not support extracting artifacts from out-of-source build directories. See 'artifacts' below.
   - dir /b /s *.exe
