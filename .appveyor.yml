@@ -34,9 +34,10 @@ install:
   - 7z x qt-4.8.7-x64-msvc2015.7z > nul
   - cd Qt
   - dir
+  - cd qt-4.8.7-x64-msvc2015
+  - dir
   
   # finish install
-  - cd ..
   - set "PATH=%QTDIR%\bin;%PATH%"
   - if defined COMPILERDIR set "PATH=%COMPILERDIR%;%PATH%"
   - '%COMPILERBAT%'
