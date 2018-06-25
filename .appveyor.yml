@@ -37,6 +37,7 @@ install:
   - cd Qt
   - if defined QTDOWNLOAD1 curl -kLO %QTDOWNLOAD1%
   - if defined QTARCHIVE1 7z x %QTARCHIVE1_OPTS% %QTARCHIVE1% >nul
+  - dir
   - if defined QTSUB set "QTDIR=%CD%\%QTSUB%"
   - dir %QTDIR%
   - cd %QTDIR% && dir
