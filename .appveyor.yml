@@ -25,9 +25,6 @@ configuration:
 
 install:
   # fix git\bin bug for mingw build
-  - set "PATH=%PATH:Git\bin;=Git\cmd;%"
-
-  # prepare extern install
   - choco install curl 7zip # dependencywalker
   - mkdir extern
   - cd extern
@@ -35,23 +32,12 @@ install:
   # install Qt
   - mkdir Qt
   - cd Qt
-  - if defined QTDOWNLOAD1 curl -kLO %QTDOWNLOAD1%
-  - if defined QTARCHIVE1 7z x %QTARCHIVE1_OPTS% %QTARCHIVE1% >nul
+  - curl -k --connect-timeout 60 --max-time 1200 -s -O https://download.gforge.liris.cnrs.fr/meppbin/windows/vs2015/MEPP/packages/clean/qt-4.8.7-x64-msvc2015.7z
+  - 7z x qt-4.8.7-x64-msvc2015.7z > nul
+  - dir qt-4.8.7-x64-msvc2015
+  - cd qt-4.8.7-x64-msvc2015
   - dir
-  - if defined QTSUB set "QTDIR=%CD%\%QTSUB%"
-  - dir %QTDIR%
-  - cd %QTDIR% && dir
-  - echo %QTARCHIVE1%
-  - echo %QTARCHIVE1_OPTS% 
-  - echo %CD%
-  - echo %QTDOWNLOAD1%
-  - echo %QTDIR%
-  - dir %QTDIR%
-  - if defined QTDOWNLOAD1 (echo [Paths] && echo Prefix=..) >%QTDIR%\bin\qt.conf
-  - set QT_PLUGIN_PATH=%QTDIR%\plugins
-  - cd ..
-
-
+  
   # finish install
   - cd ..
   - set "PATH=%QTDIR%\bin;%PATH%"
