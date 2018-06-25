@@ -35,26 +35,24 @@ install:
   - cd Qt
   - dir
   - cd qt-4.8.7-x64-msvc2015
-  - dir
-  
+ 
   # finish install
+  - set "QTDIR=%cd%"
   - set "PATH=%QTDIR%\bin;%PATH%"
-  - if defined COMPILERDIR set "PATH=%COMPILERDIR%;%PATH%"
-  - '%COMPILERBAT%'
 
-  # Set some vars
+  # # Set some vars
   - '%QTDIR%\bin\qtenv2.bat'
-  - qmake -v
-  - set PRJLIBDIR=%WINDIR%\SysWOW64 # Find vclibs
-  - set QTDIR
-  - if %QTDIR:_64=%==%QTDIR% ( set ARCH=x86 ) else set ARCH=x64
-  - if %QTDIR:msvc=%==%QTDIR% g++ --version
-  - if %QTDIR:msvc=%==%QTDIR% set make=mingw32-make.exe
-  - if %QTDIR:msvc=%==%QTDIR% %make% --version
-  - if not %QTDIR:msvc=%==%QTDIR% call "%ProgramFiles(x86)%\Microsoft Visual Studio %VSVER%\VC\vcvarsall.bat" %ARCH%
-  - if not %QTDIR:msvc=%==%QTDIR% set make=nmake.exe
-  - if not %QTDIR:msvc=%==%QTDIR% %make% /? > nul
-  - set BIN=mini-qml
+  # - qmake -v
+  # - set PRJLIBDIR=%WINDIR%\SysWOW64 # Find vclibs
+  # - set QTDIR
+  # - if %QTDIR:_64=%==%QTDIR% ( set ARCH=x86 ) else set ARCH=x64
+  # - if %QTDIR:msvc=%==%QTDIR% g++ --version
+  # - if %QTDIR:msvc=%==%QTDIR% set make=mingw32-make.exe
+  # - if %QTDIR:msvc=%==%QTDIR% %make% --version
+  # - if not %QTDIR:msvc=%==%QTDIR% call "%ProgramFiles(x86)%\Microsoft Visual Studio %VSVER%\VC\vcvarsall.bat" %ARCH%
+  # - if not %QTDIR:msvc=%==%QTDIR% set make=nmake.exe
+  # - if not %QTDIR:msvc=%==%QTDIR% %make% /? > nul
+  - set BIN=browser
 
 before_build:
   # Prepare the out-of-source build directory.
