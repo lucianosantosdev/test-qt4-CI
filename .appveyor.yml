@@ -66,6 +66,7 @@ build_script:
   # Compile it and check for .exe
   - cd %APPVEYOR_BUILD_FOLDER%-build
   - set QMAKESPEC=win32-msvc2015
+  - qmake -v
   - qmake -r %APPVEYOR_BUILD_FOLDER%
   - '%make%'
   - dir /b /s *.exe
