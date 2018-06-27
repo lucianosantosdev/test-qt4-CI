@@ -40,7 +40,7 @@ install:
   - dir
   - dir qt-4.8.7
   - cd qt-4.8.7
-  - dir mkspecs
+  - dir mkspecs\win32-msvc2015
 
   # finish install
   - set "QTDIR=%cd%"
@@ -50,8 +50,8 @@ install:
   - qmake -v
   # - set PRJLIBDIR=%WINDIR%\SysWOW64 # Find vclibs
   # - if %QTDIR:msvc=%==%QTDIR% g++ --version
-  - set make=mingw32-make.exe
-  - if %QTDIR:msvc=%==%QTDIR% %make% --version
+  # - set make=mingw32-make.exe
+  # - if %QTDIR:msvc=%==%QTDIR% %make% --version
   - call "C:\Program Files\Microsoft Visual Studio %VSVER%\VC\vcvarsall.bat" %ARCH%
   - set make=nmake.exe
   - if not %QTDIR:msvc=%==%QTDIR% %make% /? > nul
@@ -64,7 +64,7 @@ before_build:
 build_script:
   # Compile it and check for .exe
   - cd %APPVEYOR_BUILD_FOLDER%-build
-  - qmake -r -spec win32-msvc2015 %APPVEYOR_BUILD_FOLDER%
+  - qmake -r  -spec win32-msvc2015 %APPVEYOR_BUILD_FOLDER%
   - '%make%'
   - dir /b /s *.exe
 
