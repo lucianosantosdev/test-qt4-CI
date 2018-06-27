@@ -40,7 +40,7 @@ install:
   - dir
   - dir qt-4.8.7
   - cd qt-4.8.7
-  - dir lib
+  - dir mkspecs
 
   # finish install
   - set "QTDIR=%cd%"
