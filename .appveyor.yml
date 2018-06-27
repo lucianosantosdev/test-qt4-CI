@@ -46,7 +46,7 @@ install:
   - curl -kLO http://www.openssl.org/source/openssl-1.0.2d.tar.gz
   - 7z e openssl-1.0.2d.tar.gz  && 7z x openssl-1.0.2d.tar
   - dir
-  - cd openssl-1.0.2d.tar
+  - cd openssl-1.0.2d
   - perl Configure VC-WIN32 no-asm --prefix=C:\OpenSSL
   - nmake && nmake install
   - dir C:\OpenSSL
