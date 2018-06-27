@@ -52,7 +52,7 @@ install:
   # - if %QTDIR:msvc=%==%QTDIR% g++ --version
   # - set make=mingw32-make.exe
   # - if %QTDIR:msvc=%==%QTDIR% %make% --version
-  - dir "C:"
+  - dir "C:" 
   - dir "C:\Program Files\Microsoft Visual Studio %VSVER%\Common7"
   - call "C:\Program Files\Microsoft Visual Studio %VSVER%\VC\vcvarsall.bat" %ARCH%
   - set make=nmake.exe
