@@ -29,27 +29,29 @@ configuration:
 
 cache:
   - C:\Qt\4.8.7 -> appveyor.yml
+  - C:\OpenSSL -> appveyor.yml
 
 install:
   # fix git\bin bug for mingw build
   - choco install curl 7zip # dependencywalker
   - mkdir extern
   - cd extern
-  - dir "C:\Program Files"
-
-  # Build OpenSSL
-  # Build OpenSSL
-  # - curl -kLO http://www.openssl.org/source/openssl-1.0.2d.tar.gz
-  # - 7z x openssl-1.0.2d.tar.gz
-  # - cd openssl-1.0.2d
-  # - perl Configure VC-WIN32 no-asm --prefix=C:\OpenSSL
-
+  
   # # Set some vars
   - call "C:\Program Files (x86)\Microsoft Visual Studio %VSVER%\VC\vcvarsall.bat" x64 
   - set make=nmake.exe
 
+  # Build OpenSSL
+  # Build OpenSSL
+  - curl -kLO http://www.openssl.org/source/openssl-1.0.2d.tar.gz
+  - 7z x openssl-1.0.2d.tar.gz
+  - cd openssl-1.0.2d
+  - perl Configure VC-WIN32 no-asm --prefix=C:\OpenSSL
+  - nmake && nmake install
+  - dir C:\OpenSSL
+  - asdasdasdasd
+
   # install Qt
-  
   # - call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" x86_amd64
   - IF NOT EXIST "C:\Qt\4.8.7" (curl -kLO https://download.qt.io/archive/qt/4.8/4.8.7/qt-everywhere-opensource-src-4.8.7.zip)
   - IF NOT EXIST "C:\Qt\4.8.7" (7z x qt-everywhere-opensource-src-4.8.7.zip > nul && cd qt-everywhere-opensource-src-4.8.7)
