@@ -51,10 +51,10 @@ install:
   # - set PRJLIBDIR=%WINDIR%\SysWOW64 # Find vclibs
   # - if %QTDIR:msvc=%==%QTDIR% g++ --version
   - set make=mingw32-make.exe
-  - %make% --version
+  - if %QTDIR:msvc=%==%QTDIR% %make% --version
   - call "C:\Program Files\Microsoft Visual Studio %VSVER%\VC\vcvarsall.bat" %ARCH%
   - set make=nmake.exe
-  - %make% /? > nul
+  - if not %QTDIR:msvc=%==%QTDIR% %make% /? > nul
   
 before_build:
   # Prepare the out-of-source build directory.
