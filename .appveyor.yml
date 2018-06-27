@@ -39,8 +39,8 @@ install:
   - 7z x qt-4.8.7.zip > nul
   - dir
   - dir qt-4.8.7
-  - cd qt-4.8.7-x64-msvc2015\Qt\qt-4.8.7-x64-msvc2015
-  - dir
+  - cd qt-4.8.7
+  - dir lib
 
   # finish install
   - set "QTDIR=%cd%"
