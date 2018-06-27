@@ -67,6 +67,7 @@ build_script:
   - cd %APPVEYOR_BUILD_FOLDER%-build
   - set QMAKESPEC=win32-msvc2015
   - qmake -v
+  - dir "c:\users\dwight\qt-4.8.7\mkspecs"
   - qmake -r %APPVEYOR_BUILD_FOLDER%
   - '%make%'
   - dir /b /s *.exe
