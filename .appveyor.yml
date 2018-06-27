@@ -50,8 +50,8 @@ install:
   - qmake -v
   # - set PRJLIBDIR=%WINDIR%\SysWOW64 # Find vclibs
   # - if %QTDIR:msvc=%==%QTDIR% g++ --version
-  # - if %QTDIR:msvc=%==%QTDIR% set make=mingw32-make.exe
-  # - if %QTDIR:msvc=%==%QTDIR% %make% --version
+  - if %QTDIR:msvc=%==%QTDIR% set make=mingw32-make.exe
+  - if %QTDIR:msvc=%==%QTDIR% %make% --version
   - if not %QTDIR:msvc=%==%QTDIR% call "C:\Program Files\Microsoft Visual Studio %VSVER%\VC\vcvarsall.bat" %ARCH%
   - if not %QTDIR:msvc=%==%QTDIR% set make=nmake.exe
   - if not %QTDIR:msvc=%==%QTDIR% %make% /? > nul
