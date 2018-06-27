@@ -13,7 +13,7 @@ qt4-default \
 libqtwebkit4
 
 # Build
-ARG CACHEBUST=1
+# ARG CACHEBUST=1
 RUN rm -rf test-qt4-travis && git clone https://github.com/luckvargas/test-qt4-travis
 RUN cd test-qt4-travis && qmake test.pro && make && make install && ls
 

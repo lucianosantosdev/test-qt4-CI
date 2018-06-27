@@ -37,4 +37,4 @@ QMAKE_CXXFLAGS += -std=c++11
 
 # Default rules for deployment.
 target.path = /opt/$${TARGET}/bin
-INSTALLS += target
+INSTALLS += targetspo

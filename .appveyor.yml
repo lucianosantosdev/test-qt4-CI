@@ -33,7 +33,6 @@ install:
   - mkdir extern
   - cd extern
   - dir "C:\Program Files"
-  - dir "C:\Program Files\Microsoft Visual Studio\"
 
   # Build OpenSSL
   - curl -kLO http://www.dwyco.com/downloads/qt-4.8.7.zip
