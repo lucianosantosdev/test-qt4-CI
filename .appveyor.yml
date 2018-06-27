@@ -54,7 +54,7 @@ install:
   # - call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" x86_amd64
   - IF NOT EXIST "C:\Qt\4.8.7" (curl -kLO https://download.qt.io/archive/qt/4.8/4.8.7/qt-everywhere-opensource-src-4.8.7.zip)
   - IF NOT EXIST "C:\Qt\4.8.7" (7z x qt-everywhere-opensource-src-4.8.7.zip > nul && cd qt-everywhere-opensource-src-4.8.7)
-  - IF NOT EXIST "C:\Qt\4.8.7" (configure.exe -mp -prefix C:\Qt\4.8.7 -release -confirm-license -opensource -webkit -qt-zlib -qt-libjpeg -qt-libpng -qt-libmng -qt-libtiff -no-qt3support -nomake demos -nomake examples)
+  - IF NOT EXIST "C:\Qt\4.8.7" (configure.exe -mp -prefix C:\Qt\4.8.7 -release -confirm-license -opensource -qt-zlib -qt-libjpeg -qt-libpng -qt-libmng -qt-libtiff -no-qt3support -nomake demos -nomake examples)
   - IF NOT EXIST "C:\Qt\4.8.7" (nmake && nmake install)
   - cd C:\Qt\4.8.7  
   - set "QTDIR=%cd%"
