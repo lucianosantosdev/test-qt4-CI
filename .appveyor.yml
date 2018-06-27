@@ -29,6 +29,7 @@ configuration:
 
 install:
   # fix git\bin bug for mingw build
+  - dir
   - choco install curl 7zip # dependencywalker
   - mkdir extern
   - cd extern
