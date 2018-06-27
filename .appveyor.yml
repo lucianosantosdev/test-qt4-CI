@@ -36,25 +36,11 @@ install:
   - dir "C:\Program Files\Microsoft Visual Studio\"
 
   # Build OpenSSL
-  # - curl -kLO http://www.openssl.org/source/openssl-1.0.2d.tar.gz
-  # - 7z x openssl-1.0.2d.tar.gz
-  # - cd openssl-1.0.2d
-  # - perl Configure VC-WIN32 no-asm --prefix=C:\OpenSSL
-  # install Qt
-  - call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars64.bat"
-  - call "C:\Program Files\Microsoft SDKs\Windows\v7.1\Bin\SetEnv.cmd" /x64
-  - call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" x86_amd64
-  - curl -kLO https://download.qt.io/archive/qt/4.8/4.8.7/qt-everywhere-opensource-src-4.8.7.zip
-  - 7z x qt-everywhere-opensource-src-4.8.7.zip > nul
+  - curl -kLO http://www.dwyco.com/downloads/qt-4.8.7.zip
+  - 7z x qt-4.8.7.zip > nul
+  - cd qt-4.8.7-x64-msvc2015\Qt\qt-4.8.7-x64-msvc2015
   - dir
-  - cd qt-everywhere-opensource-src-4.8.7
-  # - configure.exe -mp -prefix C:\Qt\4.8.7 -release -confirm-license -opensource -qt-zlib -qt-libjpeg -qt-libpng -qt-libmng qt-libtiff -no-qt3support -nomake demos -nomake examples -openssl -I C:\OpenSSL\include -L C:\OpenSSL\lib
-  - configure.exe -mp -prefix C:\Qt\4.8.7 -release -confirm-license -opensource -qt-zlib -qt-libjpeg -qt-libpng -qt-libmng -qt-libtiff -no-qt3support -nomake demos -nomake examples -platform win32-msvc2015
-  - nmake
-  - nmake install
-  - cd C:\Qt\4.8.7
-  - dir
- 
+
   # finish install
   - set "QTDIR=%cd%"
   - set "PATH=%QTDIR%\bin;%PATH%"
@@ -66,7 +52,7 @@ install:
   - if %QTDIR:msvc=%==%QTDIR% g++ --version
   - if %QTDIR:msvc=%==%QTDIR% set make=mingw32-make.exe
   - if %QTDIR:msvc=%==%QTDIR% %make% --version
-  - if not %QTDIR:msvc=%==%QTDIR% call "%ProgramFiles(x86)%\Microsoft Visual Studio %VSVER%\VC\vcvarsall.bat" %ARCH%
+  - if not %QTDIR:msvc=%==%QTDIR% call "C:\Program Files\Microsoft Visual Studio %VSVER%\VC\vcvarsall.bat" %ARCH%
   - if not %QTDIR:msvc=%==%QTDIR% set make=nmake.exe
   - if not %QTDIR:msvc=%==%QTDIR% %make% /? > nul
   
