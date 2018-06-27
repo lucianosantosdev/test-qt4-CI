@@ -55,7 +55,9 @@ install:
   - IF NOT EXIST "C:\Qt\4.8.7" (7z x qt-everywhere-opensource-src-4.8.7.zip > nul && cd qt-everywhere-opensource-src-4.8.7)
   - IF NOT EXIST "C:\Qt\4.8.7" (configure.exe -mp -prefix C:\Qt\4.8.7 -release -confirm-license -opensource -qt-zlib -qt-libjpeg -qt-libpng -qt-libmng -qt-libtiff -no-qt3support -nomake demos -nomake examples)
   - IF NOT EXIST "C:\Qt\4.8.7" (nmake && nmake install)
-  - cd C:\Qt\4.8.7  
+  - cd C:\Qt\4.8.7
+  - dir
+  - dir bin  
   - set "QTDIR=%cd%"
   - set "PATH=%QTDIR%\bin;%PATH%"
   
