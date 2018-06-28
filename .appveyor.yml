@@ -35,7 +35,6 @@ install:
   # fix git\bin bug for mingw build
   - choco install curl 7zip # dependencywalker
   - pip install patch
-  - python -m patch
   - mkdir extern
   - cd extern
   
