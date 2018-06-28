@@ -49,7 +49,7 @@ install:
   - cd openssl-1.0.1l
   - perl Configure VC-WIN32 no-asm --prefix=C:\OpenSSL
   - ms\do_ms
-  - nmake -f ms\ntdll.mak && nmake -f ms\ntdll.mak install
+  - nmake -f ms\nt.mak && nmake -f ms\nt.mak install
   - dir C:\OpenSSL
   - asdasdasdasd
 
