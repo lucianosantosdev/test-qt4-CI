@@ -50,6 +50,7 @@ install:
   - ms\do_ms
   - nmake -f ms\nt.mak && nmake -f ms\nt.mak install
   - dir C:\OpenSSL
+  - set "PATH=C:\OpenSSL\bin;%PATH%"
   - asdasdasdasd
 
   # install Qt
