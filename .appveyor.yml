@@ -42,11 +42,10 @@ install:
   - set make=nmake.exe
 
   # Build OpenSSL
-  # Build OpenSSL
-  - curl -kLO https://www.openssl.org/source/old/1.0.1/openssl-1.0.1l.tar.gz
-  - 7z e openssl-1.0.1l.tar.gz  && 7z x openssl-1.0.1l.tar
+  - curl -kLO https://www.openssl.org/source/old/1.0.2/openssl-1.0.2l.tar.gz
+  - 7z e openssl-1.0.2l.tar.gz  && 7z x openssl-1.0.2l.tar
   - dir
-  - cd openssl-1.0.1l
+  - cd openssl-1.0.2l
   - perl Configure VC-WIN32 no-asm --prefix=C:\OpenSSL
   - ms\do_ms
   - nmake -f ms\nt.mak && nmake -f ms\nt.mak install
