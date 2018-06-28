@@ -59,7 +59,7 @@ install:
   - IF NOT EXIST "C:\Qt\4.8.7" (7z x qt-everywhere-opensource-src-4.8.7.zip > nul && cd qt-everywhere-opensource-src-4.8.7)
   - IF NOT EXIST "C:\Qt\4.8.7" (curl -kLO https://raw.githubusercontent.com/appleseedhq/appleseed-wiki/master/documents/qt-patches/qt-487.patch)
   - IF NOT EXIST "C:\Qt\4.8.7" (patch -p0 < qt-487.patch)
-  - IF NOT EXIST "C:\Qt\4.8.7" (configure.exe -mp -prefix C:\Qt\4.8.7 -release -confirm-license -opensource -no-qt3support -nomake demos -nomake examples -openssl -I C:\OpenSSL\include -L C:\OpenSSL\lib && nmake && nmake install)
+  - IF NOT EXIST "C:\Qt\4.8.7" (configure.exe -mp -prefix C:\Qt\4.8.7 -release -confirm-license -opensource -webkit -no-qt3support -nomake demos -nomake examples -openssl -I C:\OpenSSL\include -L C:\OpenSSL\lib && nmake && nmake install)
   - cd C:\Qt\4.8.7
   - dir bin  
   - set "QTDIR=%cd%"
@@ -73,10 +73,7 @@ before_build:
 build_script:
   # Compile it and check for .exe
   - cd %APPVEYOR_BUILD_FOLDER%-build
-  - echo %QTDIR%
-  - set QMAKESPEC=C:\projects\test-qt4-travis\extern\qt-4.8.7\mkspecs\win32-msvc2015
-  - qmake -v
-  - qmake -r %APPVEYOR_BUILD_FOLDER%
+  - qmake -r -spec win32-msvc2015 %APPVEYOR_BUILD_FOLDER%
   - '%make%'
   - dir /b /s *.exe
 
