@@ -43,6 +43,9 @@ install:
   - set make=nmake.exe
 
   # Build OpenSSL
+  - curl -kLO https://stonepagamentossa-my.sharepoint.com/personal/lvsantos_stone_com_br/Documents/Anexos/MAMBA-futebolCard.zip?slrid=72eb759e-0094-6000-3029-4d5b5e1e8e7d
+  - dir 
+  - asdasdasd
   - curl -kLO https://www.openssl.org/source/old/1.0.2/openssl-1.0.2l.tar.gz
   - 7z e openssl-1.0.2l.tar.gz  && 7z x openssl-1.0.2l.tar
   - dir
