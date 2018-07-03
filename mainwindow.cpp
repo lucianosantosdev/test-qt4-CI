@@ -1,7 +1,7 @@
 #include "mainwindow.h"
 #include <QtWebKit>
 
-MainWindow::MainWindow(const QUrl &url) {
+MainWindow::MainWindow(const QUrl &url) : m_loadProgress(0) {
   m_webview = new QWebView(this);
   m_webview->load(url);
 

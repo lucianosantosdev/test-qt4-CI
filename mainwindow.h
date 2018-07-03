@@ -17,5 +17,5 @@ protected slots:
 
 private:
   QWebView *m_webview;
-  int m_loadProgress = 0;
+  int m_loadProgress;
 };
