@@ -88,10 +88,10 @@ after_build:
   - copy %APPVEYOR_BUILD_FOLDER%-build\%CONFIGURATION%\%BIN%.exe deploy\%BIN%.exe
   - dir %QTDIR%
   - dir %QTDIR%\lib
-  - copy %QTDIR%\lib\QtCore4.dll deploy\
-  - copy %QTDIR%\lib\QtGui4.dll deploy\
-  - copy %QTDIR%\lib\QtNetwork4.dll deploy\
-  - copy %QTDIR%\lib\QtWebKit4.dll deploy\
+  - copy %QTDIR%\lib\QtCore4.lib deploy\
+  - copy %QTDIR%\lib\QtGui4.lib deploy\
+  - copy %QTDIR%\lib\QtNetwork4.lib deploy\
+  - copy %QTDIR%\lib\QtWebKit4.lib deploy\
   - 7z a -tzip %BIN%_%CONFIGURATION%.zip deploy -r
   - copy %APPVEYOR_BUILD_FOLDER%-build\%BIN%_%CONFIGURATION%.zip %APPVEYOR_BUILD_FOLDER%\%BIN%_%CONFIGURATION%.zip
   - dir /b /s *.zip
