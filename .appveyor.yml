@@ -53,7 +53,7 @@ build_script:
   - dir /b /s *.exe
 
 after_build:
-  - set BIN=MambaDesktopBrowser.exe
+  - set BIN=browser
   # Add a link to the build output within the source directory. This is needed because AppVeyor does
   # not support extracting artifacts from out-of-source build directories. See 'artifacts' below.
   - dir /b /s *.exe
