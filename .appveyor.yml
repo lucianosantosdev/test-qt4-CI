@@ -58,8 +58,8 @@ install:
   # - call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" x86_amd64
   - curl https://www.dropbox.com/s/mqzacqdbe1fht7y/qt487_msvc2010.zip?dl=1 -O -J -L
   - 7z x qt487_msvc2010.zip > nul
-  - dir  Qt
-  - move Qt C:\Qt
+  - dir  Qt\4.8.7
+  - move Qt\4.8.7 C:\Qt
   - dir C:\Qt
   - dir C:\Qt\4.8.7
   # - IF NOT EXIST "C:\Qt\4.8.7" (curl -kLO https://download.qt.io/archive/qt/4.8/4.8.7/qt-everywhere-opensource-src-4.8.7.zip)
