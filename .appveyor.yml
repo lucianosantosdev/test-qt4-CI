@@ -35,11 +35,6 @@ cache:
   - C:\OpenSSL -> appveyor.yml
 
 install:
-  - cd C:\
-  - dir /s libgcc_s_dw2-1.dll
-  - dir /s libstdc++-6.dll
-  - dir /s libwinpthread-1.dll
-  - asdasdasdasd
   # fix git\bin bug for mingw build
   - choco install curl 7zip # dependencywalker
   - mkdir extern
