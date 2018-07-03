@@ -31,11 +31,6 @@ cache:
   - C:\Qt\4.8.7 -> appveyor.yml
   - C:\OpenSSL -> appveyor.yml
 
-https://drive.google.com/file?export=download&id=1ysSXdRQD0YHBMfG9LY66VOwuPMcX45Cp
-https://drive.google.com/open?id=1ysSXdRQD0YHBMfG9LY66VOwuPMcX45Cp
-https://stonepagamentossa-my.sharepoint.com/personal/lvsantos_stone_com_br/Documents/public/qt487_msvc2010.zip?download=1
-https://api.onedrive.com/v1.0/shares/lvsantos_stone_com_br/EYMWg4jcO1RDlMIv83_V-kUBT0zT2VtCfjwMonT7tZWbZg?e=hrhKUb/root/content
-https://org.sharepoint.com/personal/user_org/folder/filename.ext?download=1
 install:
   # fix git\bin bug for mingw build
   - choco install curl 7zip # dependencywalker
