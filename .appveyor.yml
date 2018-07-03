@@ -35,7 +35,8 @@ cache:
   - C:\OpenSSL -> appveyor.yml
 
 install:
-  - dir C:\Qt\5.11
+  - dir C:\Qt\5.11\msvc2015_64
+  - dir C:\Qt\5.11\msvc2015_64\bin
   - asdasdasd
   # fix git\bin bug for mingw build
   - choco install curl 7zip # dependencywalker
