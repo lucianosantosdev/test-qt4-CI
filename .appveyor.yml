@@ -106,3 +106,5 @@ deploy:
     artifact: '%BIN%'
     draft: false
     prerelease: true
+    auth_token:
+      secure: p0RIEM3bMprm7t6GO2CdzBNAbItuPEYKWbvMFiHss/pP7MvlifDyVP2UMcIPrpc+
