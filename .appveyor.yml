@@ -35,6 +35,8 @@ cache:
   - C:\OpenSSL -> appveyor.yml
 
 install:
+  - dir C:\Qt\5.11
+  - asdasdasd
   # fix git\bin bug for mingw build
   - choco install curl 7zip # dependencywalker
   - pip install patch
@@ -97,7 +99,7 @@ after_build:
   - mkdir deploy
   - dir
   - copy %APPVEYOR_BUILD_FOLDER%-build\%CONFIGURATION%\%BIN%.exe deploy\%BIN%.exe
-  - dir C:\Qt\5.11.0\bin 
+  - dir C:\Qt\5.11
   - C:\Qt\5.11.0\bin\windeployqt.exe deploy/%BIN%.exe --verbose=2
   - for %%I in (%PRJLIBS%) do copy %PRJLIBDIR%\%%I deploy\
   - 7z a -tzip %BIN%_%CONFIGURATION%.zip deploy -r
