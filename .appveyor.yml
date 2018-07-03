@@ -18,7 +18,7 @@ platform:
 
 configuration:  
   - release
-  # -debug
+  - debug
 
 cache:
   - C:\Qt\4.8.7 -> .appveyor.yml
