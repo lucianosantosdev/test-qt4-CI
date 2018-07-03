@@ -97,7 +97,8 @@ after_build:
   - mkdir deploy
   - dir
   - copy %APPVEYOR_BUILD_FOLDER%-build\%CONFIGURATION%\%BIN%.exe deploy\%BIN%.exe
-  - windeployqt --%CONFIGURATION% deploy/%BIN%.exe --verbose=2
+  - dir C:\Qt\5.11.0\bin 
+  - C:\Qt\5.11.0\bin\windeployqt.exe deploy/%BIN%.exe --verbose=2
   - for %%I in (%PRJLIBS%) do copy %PRJLIBDIR%\%%I deploy\
   - 7z a -tzip %BIN%_%CONFIGURATION%.zip deploy -r
   - copy %APPVEYOR_BUILD_FOLDER%-build\%BIN%_%CONFIGURATION%.zip %APPVEYOR_BUILD_FOLDER%\%BIN%_%CONFIGURATION%.zip
