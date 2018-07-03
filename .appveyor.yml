@@ -11,7 +11,17 @@ environment:
     - PLATFORM: x86
       BUILDER: NMake
       GENERATOR: "NMake Makefiles"
-      APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2010
+      APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
+    # - BUILD: Qt4.8.7-x86-msvc2015
+    #   QMAKE_OPTIONS: "CONFIG+=NO_QSM_POSTGRES"
+    #   COMPILERBAT: '"C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\vcvarsall.bat" x86'
+    #   PRO_MAKE: nmake release
+    #   QMAKESPEC: win32-msvc2015
+    #   QTMOVE: '%OUTDIR%\bin 4.8.7-msvc2015'
+    #   QTSUB: 'qt-4.8.7-x64-msvc2015'
+    #   QTDOWNLOAD1: https://download.gforge.liris.cnrs.fr/meppbin/windows/vs2015/MEPP/packages/clean/qt-4.8.7-x64-msvc2015.7z
+    #   QTARCHIVE1: 'qt-4.8.7-x64-msvc2015.7z'
+    #   QTARCHIVE1_OPTS: '"-ir!?OUTDIR\*" "-xr!*doc\*" "-xr!*examples\*" "-xr!*demos\*"'
       
 configuration:  
   - release
@@ -35,14 +45,14 @@ install:
 
   # Build OpenSSL
   
-  # - curl -kLO https://www.openssl.org/source/old/1.0.2/openssl-1.0.2l.tar.gz
-  # - 7z e openssl-1.0.2l.tar.gz  && 7z x openssl-1.0.2l.tar
-  # - cd openssl-1.0.2l
-  # - perl Configure VC-WIN32 no-asm --prefix=C:\OpenSSL
-  # - ms\do_ms
-  # - nmake -f ms\nt.mak && nmake -f ms\nt.mak install
-  # - dir C:\OpenSSL
-  # - set "PATH=C:\OpenSSL\bin;%PATH%"
+  - curl -kLO https://www.openssl.org/source/old/1.0.2/openssl-1.0.2l.tar.gz
+  - 7z e openssl-1.0.2l.tar.gz  && 7z x openssl-1.0.2l.tar
+  - cd openssl-1.0.2l
+  - perl Configure VC-WIN32 no-asm --prefix=C:\OpenSSL
+  - ms\do_ms
+  - nmake -f ms\nt.mak && nmake -f ms\nt.mak install
+  - dir C:\OpenSSL
+  - set "PATH=C:\OpenSSL\bin;%PATH%"
 
   # install Qt
   # - call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" x86_amd64
