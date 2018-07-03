@@ -45,14 +45,14 @@ install:
 
   # Build OpenSSL
   
-  - curl -kLO https://www.openssl.org/source/old/1.0.2/openssl-1.0.2l.tar.gz
-  - 7z e openssl-1.0.2l.tar.gz  && 7z x openssl-1.0.2l.tar
-  - cd openssl-1.0.2l
-  - perl Configure VC-WIN32 no-asm --prefix=C:\OpenSSL
-  - ms\do_ms
-  - nmake -f ms\nt.mak && nmake -f ms\nt.mak install
-  - dir C:\OpenSSL
-  - set "PATH=C:\OpenSSL\bin;%PATH%"
+  # - curl -kLO https://www.openssl.org/source/old/1.0.2/openssl-1.0.2l.tar.gz
+  # - 7z e openssl-1.0.2l.tar.gz  && 7z x openssl-1.0.2l.tar
+  # - cd openssl-1.0.2l
+  # - perl Configure VC-WIN32 no-asm --prefix=C:\OpenSSL
+  # - ms\do_ms
+  # - nmake -f ms\nt.mak && nmake -f ms\nt.mak install
+  # - dir C:\OpenSSL
+  # - set "PATH=C:\OpenSSL\bin;%PATH%"
 
   # install Qt
   # - call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" x86_amd64
