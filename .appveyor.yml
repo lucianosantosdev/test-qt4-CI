@@ -57,7 +57,7 @@ install:
   - set make=nmake.exe
   - IF NOT EXIST "C:\Qt\4.8.7" (curl https://www.dropbox.com/s/d01tdjhs59jg5ak/qt487_msvs2010.zip?dl=1 -O -J -L)
   - IF NOT EXIST "C:\Qt\4.8.7" (7z x qt487_msvs2010.zip > nul)
-  - - IF NOT EXIST "C:\Qt\4.8.7" (move Qt\4.8.7 C:\Qt\)
+  - IF NOT EXIST "C:\Qt\4.8.7" (move Qt\4.8.7 C:\Qt\)
   # - IF NOT EXIST "C:\Qt\4.8.7" (curl -kLO https://download.qt.io/archive/qt/4.8/4.8.7/qt-everywhere-opensource-src-4.8.7.zip)
   # - IF NOT EXIST "C:\Qt\4.8.7" (7z x qt-everywhere-opensource-src-4.8.7.zip > nul && cd qt-everywhere-opensource-src-4.8.7)
   # - IF NOT EXIST "C:\Qt\4.8.7" (curl -kLO https://raw.githubusercontent.com/appleseedhq/appleseed-wiki/master/documents/qt-patches/qt-487.patch)
