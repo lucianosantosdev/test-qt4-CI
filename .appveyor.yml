@@ -36,9 +36,10 @@ cache:
 
 install:
   # fix git\bin bug for mingw build
-  - choco install curl 7zip # dependencywalker
-  - mkdir extern
-  - cd extern
+  - dir "C:\Program Files (x86)\Microsoft Visual Studio 10.0"
+  # - choco install curl 7zip # dependencywalker
+  # - mkdir extern
+  # - cd extern
   
   # Build OpenSSL
   
