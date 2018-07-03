@@ -53,7 +53,7 @@ build_script:
   - dir /b /s *.exe
 
 after_build:
-  - set BIN=browser
+  - set BIN=MambaDesktopBrowser.exe
   # Add a link to the build output within the source directory. This is needed because AppVeyor does
   # not support extracting artifacts from out-of-source build directories. See 'artifacts' below.
   - dir /b /s *.exe
@@ -63,7 +63,7 @@ after_build:
   - copy %QTDIR%\bin\QtGui4.dll deploy\
   - copy %QTDIR%\bin\QtNetwork4.dll deploy\
   - copy %QTDIR%\bin\QtWebKit4.dll deploy\
-  - 7z a -tzip %BIN%_%CONFIGURATION%.zip deploy\* -r
+  - 7z a -tzip %BIN%_%CONFIGURATION%.zip "deploy\*" -r
   - copy %APPVEYOR_BUILD_FOLDER%-build\%BIN%_%CONFIGURATION%.zip %APPVEYOR_BUILD_FOLDER%\%BIN%_%CONFIGURATION%.zip
   - dir /b /s *.zip
 
