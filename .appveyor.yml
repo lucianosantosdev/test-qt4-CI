@@ -35,17 +35,16 @@ cache:
   - C:\OpenSSL -> appveyor.yml
 
 install:
+  - cd C:\
+  - dir /s libgcc_s_dw2-1.dll
+  - dir /s libstdc++-6.dll
+  - dir /s libwinpthread-1.dll
+  - asdasdasdasd
   # fix git\bin bug for mingw build
   - choco install curl 7zip # dependencywalker
-  - pip install patch
   - mkdir extern
   - cd extern
   
-  # # Set some vars
-  # - dir "C:\Program Files (x86)"
-  # - call "C:\Program Files (x86)\Microsoft Visual Studio %VSVER%\VC\vcvarsall.bat" x64 
-  
-
   # Build OpenSSL
   
   # - curl -kLO https://www.openssl.org/source/old/1.0.2/openssl-1.0.2l.tar.gz
@@ -63,17 +62,13 @@ install:
   - set make=nmake.exe
   - curl https://www.dropbox.com/s/d01tdjhs59jg5ak/qt487_msvs2010.zip?dl=1 -O -J -L
   - 7z x qt487_msvs2010.zip > nul
-  - dir  Qt\4.8.7
   - move Qt\4.8.7 C:\Qt
-  - dir C:\Qt
-  - dir C:\Qt\4.8.7
   # - IF NOT EXIST "C:\Qt\4.8.7" (curl -kLO https://download.qt.io/archive/qt/4.8/4.8.7/qt-everywhere-opensource-src-4.8.7.zip)
   # - IF NOT EXIST "C:\Qt\4.8.7" (7z x qt-everywhere-opensource-src-4.8.7.zip > nul && cd qt-everywhere-opensource-src-4.8.7)
   # - IF NOT EXIST "C:\Qt\4.8.7" (curl -kLO https://raw.githubusercontent.com/appleseedhq/appleseed-wiki/master/documents/qt-patches/qt-487.patch)
   # - IF NOT EXIST "C:\Qt\4.8.7" (patch -p0 < qt-487.patch)
   # - IF NOT EXIST "C:\Qt\4.8.7" (configure.exe  -make nmake -platform win32-msvc2015 -prefix C:\Qt\4.8.7 -release -confirm-license -opensource -webkit -no-qt3support -nomake demos -nomake examples -openssl -I C:\OpenSSL\include -L C:\OpenSSL\lib && nmake && nmake install)
   - cd C:\Qt\4.8.7
-  - dir bin  
   - set "QTDIR=%cd%"
   - set "PATH=%QTDIR%\bin;%PATH%"
   
@@ -95,11 +90,11 @@ after_build:
   # not support extracting artifacts from out-of-source build directories. See 'artifacts' below.
   - dir /b /s *.exe
   - mkdir deploy
-  - dir
   - copy %APPVEYOR_BUILD_FOLDER%-build\%CONFIGURATION%\%BIN%.exe deploy\%BIN%.exe
-  - dir C:\Qt\5.11
-  - C:\Qt\5.11\msvc2015_64\bin\windeployqt.exe deploy/%BIN%.exe --verbose=2
-  - for %%I in (%PRJLIBS%) do copy %PRJLIBDIR%\%%I deploy\
+  - copy %QTDIR%\lib\QtCore4.dll deploy\
+  - copy %QTDIR%\lib\QtGui4.dll deploy\
+  - copy %QTDIR%\lib\QtNetwork4.dll deploy\
+  - copy %QTDIR%\lib\QtWebKit4.dll deploy\
   - 7z a -tzip %BIN%_%CONFIGURATION%.zip deploy -r
   - copy %APPVEYOR_BUILD_FOLDER%-build\%BIN%_%CONFIGURATION%.zip %APPVEYOR_BUILD_FOLDER%\%BIN%_%CONFIGURATION%.zip
   - dir /b /s *.zip
