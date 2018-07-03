@@ -63,7 +63,8 @@ after_build:
   - copy %QTDIR%\bin\QtGui4.dll deploy\
   - copy %QTDIR%\bin\QtNetwork4.dll deploy\
   - copy %QTDIR%\bin\QtWebKit4.dll deploy\
-  - 7z a -tzip %BIN%_%CONFIGURATION%.zip "deploy\*" -r
+  - cd 
+  - 7z a -tzip %BIN%_%CONFIGURATION%.zip .\deploy\* -r
   - copy %APPVEYOR_BUILD_FOLDER%-build\%BIN%_%CONFIGURATION%.zip %APPVEYOR_BUILD_FOLDER%\%BIN%_%CONFIGURATION%.zip
   - dir /b /s *.zip
 
