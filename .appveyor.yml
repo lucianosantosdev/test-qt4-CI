@@ -86,6 +86,8 @@ after_build:
   - dir /b /s *.exe
   - mkdir deploy
   - copy %APPVEYOR_BUILD_FOLDER%-build\%CONFIGURATION%\%BIN%.exe deploy\%BIN%.exe
+  - dir %QTDIR%
+  - dir %QTDIR%\lib
   - copy %QTDIR%\lib\QtCore4.dll deploy\
   - copy %QTDIR%\lib\QtGui4.dll deploy\
   - copy %QTDIR%\lib\QtNetwork4.dll deploy\
