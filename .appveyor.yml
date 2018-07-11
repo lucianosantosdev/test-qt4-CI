@@ -27,6 +27,7 @@ cache:
 install:
   # dependencies
   - dir C:\
+  - mingw32-make
   - asdasdasdasd
   - choco install curl 7zip 
   - mkdir extern
@@ -35,13 +36,14 @@ install:
   #setup environment
   # OPEN SSL
   - curl https://www.dropbox.com/s/d01tdjhs59jg5ak/qt487_msvs2010.zip?dl=1 -O -J -L
+  - 7z x qt487_msvs2010.zip > nul
   
   # QT 
-  - call "C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\vcvarsall.bat" %arch%
-  - set make=C:\nmake.exe
-  - IF NOT EXIST "C:\Qt\4.8.7" (curl https://www.dropbox.com/s/d01tdjhs59jg5ak/qt487_msvs2010.zip?dl=1 -O -J -L)
-  - IF NOT EXIST "C:\Qt\4.8.7" (7z x qt487-mingw32.zip > nul)
-  - IF NOT EXIST "C:\Qt\4.8.7" (move Qt\4.8.7 C:\Qt\)
+  # - call "C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\vcvarsall.bat" %arch%
+  # - set make=C:\nmake.exe
+  - curl https://www.dropbox.com/s/d01tdjhs59jg5ak/qt487_msvs2010.zip?dl=1 -O -J -L
+  - 7z x qt487-mingw32.zip > nul
+  - move Qt\4.8.7 C:\Qt\
   - cd C:\Qt\4.8.7
   - set "QTDIR=%cd%"
   - set "PATH=%QTDIR%\bin;%PATH%"
