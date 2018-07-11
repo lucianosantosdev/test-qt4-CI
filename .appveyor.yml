@@ -26,7 +26,7 @@ cache:
 
 install:
   # dependencies
-  - dir C:\MinGW\bin
+  - set "PATH=C:\MinGW\bin;%PATH%"
   - mingw32-make
   - asdasdasdasd
   - choco install curl 7zip 
