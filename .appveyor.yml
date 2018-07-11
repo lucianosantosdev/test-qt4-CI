@@ -47,7 +47,6 @@ install:
   - 7z x qt487-mingw32.zip > nul
   - move Qt\4.8.7\4.8.7 C:\Qt\
   - dir C:\Qt\4.8.7\
-  - asdasdasd
   
 before_build:
   # Prepare the out-of-source build directory.
