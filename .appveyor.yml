@@ -10,8 +10,7 @@ init:
 environment:
   matrix:
     - arch: x86
-      compiler: msvc2010
-      backend: vs2010
+      compiler: mingw
 
 platform:
   - x64
@@ -26,22 +25,25 @@ cache:
 
 install:
   # dependencies
-  - set "PATH=C:\MinGW\bin;%PATH%"
-  - mingw32-make
-  - asdasdasdasd
   - choco install curl 7zip 
   - mkdir extern
   - cd extern
 
   #setup environment
   # OPEN SSL
-  - curl https://www.dropbox.com/s/d01tdjhs59jg5ak/qt487_msvs2010.zip?dl=1 -O -J -L
-  - 7z x qt487_msvs2010.zip > nul
+  - curl https://www.dropbox.com/s/autuq39yr1s0ufi/OpenSSL101c.zip?dl=0 -O -J -L
+  - 7z x OpenSSL101c.zip > nul
+  - dir 
+  - move OpenSSL C:\
+  - dir C:\
+  - dir C:\OpenSSL
   
   # QT 
   # - call "C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\vcvarsall.bat" %arch%
   # - set make=C:\nmake.exe
-  - curl https://www.dropbox.com/s/d01tdjhs59jg5ak/qt487_msvs2010.zip?dl=1 -O -J -L
+  - set "PATH=C:\MinGW\bin;%PATH%"
+  - set make="mingw32-make.exe"
+  - curl https://www.dropbox.com/s/3vzlt5879n8fn03/qt487-mingw32.zip?dl=1 -O -J -L
   - 7z x qt487-mingw32.zip > nul
   - move Qt\4.8.7 C:\Qt\
   - cd C:\Qt\4.8.7
