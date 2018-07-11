@@ -54,8 +54,7 @@ before_build:
 
   - cd %APPVEYOR_BUILD_FOLDER%
   - mkdir %APPVEYOR_BUILD_FOLDER%-build
-  - cd %APPVEYOR_BUILD_FOLDER%-build
-  - qmake -spec win32-g++-4.6 CONFIG+=%CONFIGURATION% %APPVEYOR_BUILD_FOLDER% -v
+  - qmake -spec win32-g++-4.6 -o %APPVEYOR_BUILD_FOLDER%-build -r -Wall -Wlogic -Wparser CONFIG+=%CONFIGURATION% . -v
   
 build_script:
   # Compile it and check for .exe
