@@ -46,15 +46,14 @@ install:
   - curl https://www.dropbox.com/s/3vzlt5879n8fn03/qt487-mingw32.zip?dl=1 -O -J -L
   - 7z x qt487-mingw32.zip > nul
   - move Qt\4.8.7 C:\Qt\
-  - cd C:\Qt\4.8.7
-  - set "QTDIR=%cd%"
+  - set "QTDIR=C:\Qt\4.8.7"
   - set "PATH=%QTDIR%\bin;%PATH%"
   
 before_build:
   # Prepare the out-of-source build directory.
   - cd %APPVEYOR_BUILD_FOLDER%
   - mkdir %APPVEYOR_BUILD_FOLDER%-build
-  - qmake -spec win32-g++-4.6 -o %APPVEYOR_BUILD_FOLDER%-build -r -Wall -Wlogic -Wparser CONFIG+=%CONFIGURATION% %APPVEYOR_BUILD_FOLDER%
+  - qmake.exe -spec win32-g++-4.6 -o %APPVEYOR_BUILD_FOLDER%-build -r -Wall -Wlogic -Wparser CONFIG+=%CONFIGURATION% %APPVEYOR_BUILD_FOLDER%
   
 build_script:
   # Compile it and check for .exe
