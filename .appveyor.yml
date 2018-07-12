@@ -30,7 +30,7 @@ install:
   - cd extern
 
   #setup environment
-  # Toolchain
+  # Toolchain - MinGW
   - curl https://www.dropbox.com/s/2r03pyyuhuwn37m/MinGW.zip?dl=0 -O -J -L
   - 7z x MinGW.zip > nul
   - set "PATH=%cd%\MinGW\bin;%PATH%"
@@ -60,9 +60,7 @@ before_build:
   # Prepare the out-of-source build directory.
   - cd %APPVEYOR_BUILD_FOLDER%
   - mkdir %APPVEYOR_BUILD_FOLDER%-build
-  # - qmake -spec win32-g++-4.6 -o %APPVEYOR_BUILD_FOLDER%-build -r -Wall -Wlogic -Wparser CONFIG+=%CONFIGURATION% . -v
-  - C:\Qt\4.8.7\bin\qmake.exe -v
-  - C:\Qt\4.8.7\bin\qmake.exe test.pro
+  - qmake -spec win32-g++-4.6 -o %APPVEYOR_BUILD_FOLDER%-build -r -Wall -Wlogic -Wparser CONFIG+=%CONFIGURATION% %APPVEYOR_BUILD_FOLDER%
   
 build_script:
   # Compile it and check for .exe
