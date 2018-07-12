@@ -30,6 +30,14 @@ install:
   - cd extern
 
   #setup environment
+  # Toolchain
+  - curl https://www.dropbox.com/s/2r03pyyuhuwn37m/MinGW.zip?dl=0 -O -J -L
+  - 7z x MinGW.zip > nul
+  - set "PATH=%cd%\MinGW\bin;%PATH%"
+  - set make="mingw32-make.exe"
+  - mingw32-make -v
+  - g++ -v
+
   # OPEN SSL
   - curl https://www.dropbox.com/s/autuq39yr1s0ufi/OpenSSL101c.zip?dl=0 -O -J -L
   - 7z x OpenSSL101c.zip > nul
@@ -37,15 +45,11 @@ install:
   - move OpenSSL C:\
   - dir C:\
   - dir C:\OpenSSL
-  
+
   # QT 
   # - call "C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\vcvarsall.bat" %arch%
   # - set make=C:\nmake.exe
-  - set "PATH=C:\MinGW\bin;%PATH%"
-  - set make="mingw32-make.exe"
-  - mingw32-make -v
-  - g++ -v
-  - asdasdasd
+  
   - curl https://www.dropbox.com/s/wqzrgpvrwvboc29/qt487-mingw32.zip?dl=1 -O -J -L
   - 7z x qt487-mingw32.zip > nul
   - move Qt\4.8.7 C:\Qt\
@@ -54,7 +58,6 @@ install:
   
 before_build:
   # Prepare the out-of-source build directory.
-
   - cd %APPVEYOR_BUILD_FOLDER%
   - mkdir %APPVEYOR_BUILD_FOLDER%-build
   # - qmake -spec win32-g++-4.6 -o %APPVEYOR_BUILD_FOLDER%-build -r -Wall -Wlogic -Wparser CONFIG+=%CONFIGURATION% . -v
