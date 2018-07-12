@@ -43,7 +43,7 @@ install:
   # - set make=C:\nmake.exe
   - set "PATH=C:\MinGW\bin;%PATH%"
   - set make="mingw32-make.exe"
-  - curl https://www.dropbox.com/s/ukyu00n4q47lm3t/qt487-mingw32.zip?dl=1 -O -J -L
+  - curl https://www.dropbox.com/s/wqzrgpvrwvboc29/qt487-mingw32.zip?dl=1 -O -J -L
   - 7z x qt487-mingw32.zip > nul
   - move Qt\4.8.7 C:\Qt\
   - set "QTDIR=C:\Qt\4.8.7"
