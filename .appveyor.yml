@@ -29,7 +29,7 @@ install:
   - mkdir extern
   - cd extern
 
-  #setup environment
+  ## setup environment
   # Toolchain - MinGW
   - curl https://www.dropbox.com/s/2r03pyyuhuwn37m/MinGW.zip?dl=0 -O -J -L
   - 7z x MinGW.zip > nul
@@ -46,10 +46,7 @@ install:
   - dir C:\
   - dir C:\OpenSSL
 
-  # QT 
-  # - call "C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\vcvarsall.bat" %arch%
-  # - set make=C:\nmake.exe
-  
+  # QT  
   - curl https://www.dropbox.com/s/wqzrgpvrwvboc29/qt487-mingw32.zip?dl=1 -O -J -L
   - 7z x qt487-mingw32.zip > nul
   - move Qt\4.8.7 C:\Qt\
