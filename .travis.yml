@@ -30,7 +30,7 @@ matrix:
     compiler: clang
 
 before_install:
-- if [ "${TRAVIS_OS_NAME}" = "linux" ]; then 
+- if [ "${TRAVIS_OS_NAME}" = "linux" ]; then  
     sudo add-apt-repository ppa:beineri/opt-qt487-trusty -y;
     sudo apt update -qq; sudo apt install opt-qt4-dev-tools -y;
   fi
